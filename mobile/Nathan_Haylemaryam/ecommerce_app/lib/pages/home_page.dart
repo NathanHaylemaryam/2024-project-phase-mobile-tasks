@@ -1,8 +1,8 @@
-import 'package:e_commerce_project/pages/details._page.dart';
-import 'package:e_commerce_project/pages/search_page.dart';
-import 'package:e_commerce_project/pages/updata_page.dart';
-import 'package:e_commerce_project/utils/product.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/product.dart';
+import 'search_page.dart';
+import 'updata_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
+        preferredSize: const Size.fromHeight(90),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 16),
@@ -35,11 +35,11 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(12), // square with rounded corners
                       ),
                     ),
-                    SizedBox(width: 15,),
-                    Column(
+                    const SizedBox(width: 15,),
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
                           'July 14, 2023',
                           style: TextStyle(fontSize: 12, color: Colors.grey),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.notifications_none,
                     color: Colors.black,
                     size: 20,
@@ -89,14 +89,14 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Available Products',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color:  Color.fromRGBO(217, 217, 217, 1),
+                        color:  const Color.fromRGBO(217, 217, 217, 1),
                         width: 1.5,
                       )
                         ,borderRadius: BorderRadius.circular(12),
@@ -104,9 +104,9 @@ class _HomePageState extends State<HomePage> {
                     child: IconButton(
                       onPressed: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SearchPage()),
+                        MaterialPageRoute(builder: (context) => const SearchPage()),
                       ),
-                      icon: Icon(Icons.search, color: Color.fromRGBO(217, 217, 217, 1),),
+                      icon: const Icon(Icons.search, color: Color.fromRGBO(217, 217, 217, 1),),
                     ),
                   ),
                 ],
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: ListView.builder(itemBuilder: (context,index){
-                return Product();
+                return const Product();
 
               }),
                 )
@@ -128,16 +128,16 @@ class _HomePageState extends State<HomePage> {
         child: FloatingActionButton(
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => UpdatePage()),
+            MaterialPageRoute(builder: (context) => const UpdatePage()),
 
           ),
-          backgroundColor: Color.fromRGBO(63, 81, 243, 1),
-          child: Icon(
+          backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
+          shape: const CircleBorder(),
+          child: const Icon(
             Icons.add,
             color: Colors.white,
             size: 32,
           ),
-          shape: const CircleBorder(),
 
         ),
       ),

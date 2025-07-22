@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
 
 import '../utils/product.dart';
 
 class SearchPage extends StatefulWidget {
-   SearchPage({super.key});
+   const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -15,17 +14,17 @@ class _SearchPageState extends State<SearchPage> {
   RangeValues values = const RangeValues(20, 80);
   @override
   Widget build(BuildContext context) {
-    RangeLabels labels = RangeLabels(
+    RangeLabels _ = RangeLabels(
       values.start.toString(),
       values.end.toString(),
     );
 
-  TextEditingController _categoryController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
 
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Color.fromRGBO(63, 81, 243, 1),
           ),
@@ -36,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: Colors.white,
         centerTitle: true,
 
-        title: Text(
+        title: const Text(
           'Search Product',
           style: TextStyle(
             fontWeight: FontWeight.w500,
@@ -64,9 +63,9 @@ class _SearchPageState extends State<SearchPage> {
 
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Color.fromRGBO(217, 217, 217, 1),
+                      color: const Color.fromRGBO(217, 217, 217, 1),
                     ),
-                    child: Row(
+                    child: const Row(
 
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -83,7 +82,7 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
 
-                  Icon(
+                  const Icon(
                     Icons.indeterminate_check_box_rounded,
                     color: Color.fromRGBO(63, 81, 243, 1),
                     size: 69,
@@ -94,7 +93,7 @@ class _SearchPageState extends State<SearchPage> {
             Expanded(
 
               child: ListView.builder(itemBuilder: (context,index){
-                return Product();
+                return const Product();
 
               }),
             ),
@@ -105,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
 
                 children: [
 
-                  Text('Category', style: TextStyle(
+                  const Text('Category', style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Poppins',
@@ -119,7 +118,7 @@ class _SearchPageState extends State<SearchPage> {
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: TextField(
+                    child: const TextField(
 
                       decoration: InputDecoration(
 
@@ -128,8 +127,8 @@ class _SearchPageState extends State<SearchPage> {
 
                     ),
                   )
-                  ,SizedBox(height: 16,),
-                  Text("Price", style: TextStyle(fontWeight: FontWeight.bold)),
+                  ,const SizedBox(height: 16,),
+                  const Text('Price', style: TextStyle(fontWeight: FontWeight.bold)),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
                     trackHeight: 11.0,
@@ -142,7 +141,7 @@ class _SearchPageState extends State<SearchPage> {
                     min: 0,
                     max: 100,
 
-                    activeColor: Color.fromRGBO(63, 81, 243, 1),
+                    activeColor: const Color.fromRGBO(63, 81, 243, 1),
                     inactiveColor: Colors.grey,
 
                     labels: RangeLabels(
@@ -158,23 +157,22 @@ class _SearchPageState extends State<SearchPage> {
                 ),
 
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context); // Close the sheet
-                        print("Category: ${_categoryController.text}");
-                        print("Price: $values");
+
                         // Use filter values in your main screen
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(63, 81, 243, 1),
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: Text("APPLY", style: TextStyle(color: Colors.white),),
+                      child: const Text('APPLY', style: TextStyle(color: Colors.white),),
                     ),
                   ),
 

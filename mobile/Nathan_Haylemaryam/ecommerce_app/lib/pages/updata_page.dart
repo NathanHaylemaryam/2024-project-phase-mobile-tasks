@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -28,14 +27,14 @@ class _UpdatePageState extends State<UpdatePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Color.fromRGBO(63, 81, 243, 1),),
+          icon: const Icon(Icons.arrow_back_ios, color: Color.fromRGBO(63, 81, 243, 1),),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Add Product ',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -43,7 +42,7 @@ class _UpdatePageState extends State<UpdatePage> {
       body: Center(
 
         child: Container(
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           padding: const EdgeInsets.all(12),
 
           child: Padding(
@@ -54,7 +53,7 @@ class _UpdatePageState extends State<UpdatePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    color: Color.fromRGBO(243, 243, 243, 1),
+                    color: const Color.fromRGBO(243, 243, 243, 1),
                     child: GestureDetector(
                       onTap: (){},
                       child: Container(
@@ -76,7 +75,7 @@ class _UpdatePageState extends State<UpdatePage> {
                             fit: BoxFit.cover,
                           ),
                         )
-                            : Center(
+                            : const Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -89,7 +88,7 @@ class _UpdatePageState extends State<UpdatePage> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Name',
                     style: TextStyle(
                       fontSize: 14,
@@ -98,19 +97,19 @@ class _UpdatePageState extends State<UpdatePage> {
                     ),
                   ),
                   Container(
-                    color: Color.fromRGBO(243, 243, 243, 1),
+                    color: const Color.fromRGBO(243, 243, 243, 1),
                     width: 366,
                     height: 50,
                     // decoration: BoxDecoration(
                     //   border: Border.all(),
                     //   borderRadius: BorderRadiusDirectional.circular(5),
                     // ),
-                    child: TextField(
+                    child: const TextField(
 
-                      decoration: const InputDecoration(border: InputBorder.none),
+                      decoration: InputDecoration(border: InputBorder.none),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'category',
                     style: TextStyle(
                       fontSize: 14,
@@ -119,16 +118,16 @@ class _UpdatePageState extends State<UpdatePage> {
                     ),
                   ),
                   Container(
-                    color: Color.fromRGBO(243, 243, 243, 1),
+                    color: const Color.fromRGBO(243, 243, 243, 1),
                     width: 366,
                     height: 50,
 
-                    child: TextField(
+                    child: const TextField(
 
-                      decoration: const InputDecoration(border: InputBorder.none),
+                      decoration: InputDecoration(border: InputBorder.none),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Price',
 
                     style: TextStyle(
@@ -139,7 +138,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     ),
                   ),
                   Container(
-                    color: Color.fromRGBO(243, 243, 243, 1),
+                    color: const Color.fromRGBO(243, 243, 243, 1),
                     width: 366,
                     height: 50,
                     // decoration: BoxDecoration(
@@ -147,16 +146,16 @@ class _UpdatePageState extends State<UpdatePage> {
                     //   borderRadius: BorderRadiusDirectional.circular(5),
                     //
                     // ),
-                    child: TextField(
+                    child: const TextField(
                       textAlign: TextAlign.center,
 
-                      decoration: (const InputDecoration(border: InputBorder.none,hintText:  '                                                             \$ ')
+                      decoration: (InputDecoration(border: InputBorder.none,hintText:  '                                                             \$ ')
 
 
                       )
                     ),
                   ),
-                  Text(
+                  const Text(
                     'description',
                     style: TextStyle(
                       fontSize: 14,
@@ -165,7 +164,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     ),
                   ),
                   Container(
-                    color: Color.fromRGBO(243, 243, 243, 1),
+                    color: const Color.fromRGBO(243, 243, 243, 1),
                     width: 366,
                     height: 140,
                     // decoration: BoxDecoration(
@@ -173,11 +172,11 @@ class _UpdatePageState extends State<UpdatePage> {
                     //   borderRadius: BorderRadiusDirectional.circular(5),
                     //
                     // ),
-                    child: TextField(
-                      decoration: const InputDecoration(border: InputBorder.none),
+                    child: const TextField(
+                      decoration: InputDecoration(border: InputBorder.none),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   SizedBox(
@@ -186,17 +185,17 @@ class _UpdatePageState extends State<UpdatePage> {
               
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text('ADD'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(63, 81, 243, 1),
+                        backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
                         foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0)
                           )
                       ),
+                      child: const Text('ADD'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   SizedBox(
@@ -211,7 +210,6 @@ class _UpdatePageState extends State<UpdatePage> {
                       child: ElevatedButton(
               
                         onPressed: () {},
-                        child: Text('Delete'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.red,
@@ -219,6 +217,7 @@ class _UpdatePageState extends State<UpdatePage> {
                             borderRadius: BorderRadius.circular(8)
                           )
                         ),
+                        child: const Text('Delete'),
                       ),
                     ),
                   ),

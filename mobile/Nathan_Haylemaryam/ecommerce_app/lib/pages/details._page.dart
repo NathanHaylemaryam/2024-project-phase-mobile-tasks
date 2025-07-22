@@ -21,9 +21,9 @@ class _DetailsPageState extends State<DetailsPage> {
       onTap: () => setState(() => selectedSize = size), // Update selection
       child: Container(
         width: 60, // Fixed width per item
-        margin: EdgeInsets.only(right: 8), // Spacing between items
+        margin: const EdgeInsets.only(right: 8), // Spacing between items
         decoration: BoxDecoration(
-          color: isSelected ? Color.fromRGBO(63, 81, 243, 1) : Colors.grey[200],
+          color: isSelected ? const Color.fromRGBO(63, 81, 243, 1) : Colors.grey[200],
           // Selected color
           borderRadius: BorderRadius.circular(8), // Rounded corners
         ),
@@ -48,7 +48,7 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Color.fromRGBO(63, 81, 243, 1),
           ),
@@ -78,15 +78,15 @@ class _DetailsPageState extends State<DetailsPage> {
                   GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DetailsPage()),
+                      MaterialPageRoute(builder: (context) => const DetailsPage()),
                     ),
                     child: Image.asset('lib/images/1.jpg'),
                   ),
 
                   Container(
                     color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20,right: 20,top: 8, bottom: 0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20,right: 20,top: 8, bottom: 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -117,8 +117,8 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                   Container(
                     color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20,right: 20,top: 8, bottom: 0,),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20,right: 20,top: 8, bottom: 0,),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -137,8 +137,8 @@ class _DetailsPageState extends State<DetailsPage> {
 
                   Container(
                     color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 12, top: 12),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 12, top: 12),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -172,8 +172,8 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                   Container(
                     color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20 ,top: 12,bottom: 25),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20.0, right: 20 ,top: 12,bottom: 25),
                       child: Text(
                         'The Nike Kyrie 4 suits up for Halloween, featuring an all-black finish on the mesh and nubuck upper. A green slime graphic coats the underside of the glossy black Swoosh and appears to drip dramatically onto the matching black midsole. The black leather tongue tag and the shoes distinctive upward-curving rubber outsole are similarly outfitted in Rage Green.',
                       style: TextStyle(
@@ -206,7 +206,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
                               child: ElevatedButton(
                                 onPressed: () {},
-                                child: Text('Delete'),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
                                   foregroundColor: Colors.red,
@@ -214,6 +213,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
+                                child: const Text('Delete'),
                               ),
                             ),
                           ),
@@ -228,14 +228,14 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               child: ElevatedButton(
                                 onPressed: () {},
-                                child: Text('UPDATE'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color.fromRGBO(63, 81, 243, 1),
+                                  backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
+                                child: const Text('UPDATE'),
                               ),
                             ),
                           ),
