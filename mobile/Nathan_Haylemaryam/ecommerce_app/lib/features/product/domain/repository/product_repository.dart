@@ -1,10 +1,10 @@
-import 'package:dartz/dartz.dart';
-import '../../../../core/error/failure.dart';
-import '../entities/product.dart';
+import '../../../../utils/product.dart';
 
 abstract class ProductRepository {
-  Future<Either<Failure, void>> insertProduct(Product product);
-  Future<Either<Failure, void>> updateProduct(Product product);
-  Future<Either<Failure, void>> deleteProduct(String id);
-  Future<Either<Failure, Product>> getProduct(String id);
+  Future<List<Product>> getAllProducts();
+  Future<Product> getProductById(String name);
+  Future<void> createProduct(Product product);
+  Future<void> updateProduct(Product product);
+  Future<void> deleteProduct(String id);
+
 }
