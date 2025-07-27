@@ -1,17 +1,16 @@
 
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../utils/shoe_product.dart';
 import '../repository/product_repository.dart';
 
-class GetProduct {
+class InsertProduct {
   final ProductRepository repository;
 
-  GetProduct(this.repository);
+  InsertProduct(this.repository);
 
-  Future<Either<Failure, Product>> call(String id) {
-    return repository.getProduct(id);
+  Future<Either<Failure, void>> call(Product product) {
+    return repository.insertProduct(product);
   }
 }

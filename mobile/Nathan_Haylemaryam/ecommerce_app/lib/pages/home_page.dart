@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/product.dart';
+import '../utils/shoe_product.dart';
 import 'search_page.dart';
 import 'updata_page.dart';
 
