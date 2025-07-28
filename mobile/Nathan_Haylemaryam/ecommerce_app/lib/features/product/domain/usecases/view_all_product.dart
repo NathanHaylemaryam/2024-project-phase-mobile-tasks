@@ -11,7 +11,7 @@ class GetProduct {
 
   GetProduct(this.repository);
 
-  Future<Either<Failure, Product>> call(String id) {
+  Future<Either<Failure, Product>> call(int id) {
     return repository.getProduct(id);
   }
 }
