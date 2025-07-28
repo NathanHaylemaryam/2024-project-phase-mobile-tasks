@@ -36,4 +36,25 @@ class ProductModel extends Product {
       'id': id,
     };
   }
+  Product toEntity() {
+    return const Product(
+        id: 1,
+        name: 'name',
+        decscription: 'description',
+        price: 'price',
+        imagepath: ''
+    );
+  }
+  factory ProductModel.fromEntity(Product product) {
+    return ProductModel(
+      id: product.id,
+      name: product.name,
+      decscription: product.decscription,
+      price: product.price,
+      imagepath: product.imagepath,
+    );
+  }
+
 }
+
+

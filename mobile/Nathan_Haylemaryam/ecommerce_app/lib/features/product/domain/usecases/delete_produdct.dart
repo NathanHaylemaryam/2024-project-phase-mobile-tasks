@@ -12,7 +12,7 @@ class DeleteProduct {
 
   DeleteProduct(this.repository);
 
-  Future<Either<Failure, Unit>>? call(int id) {
+  Future<Either<Failure, Unit>>? call(String id) {
     return repository.deleteProduct(id);
   }
 }

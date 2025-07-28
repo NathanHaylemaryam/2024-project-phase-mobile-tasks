@@ -3,7 +3,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
-import '../../../../utils/shoe_product.dart';
+
+import '../entities/product.dart';
 import '../repository/product_repository.dart';
 
 class GetProduct {
@@ -11,7 +12,7 @@ class GetProduct {
 
   GetProduct(this.repository);
 
-  Future<Either<Failure, Product>> call(int id) {
+  Future<Either<Failure, Product>> call(String id) {
     return repository.getProduct(id);
   }
 }
