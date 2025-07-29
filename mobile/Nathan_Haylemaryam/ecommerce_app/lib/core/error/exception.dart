@@ -12,3 +12,7 @@ class CacheException extends AppException with EquatableMixin {
   @override
   List<Object?> get props => [];
 }
+class NotFoundException extends AppException with EquatableMixin {
+  @override
+  List<Object?> get props => [];
+}
