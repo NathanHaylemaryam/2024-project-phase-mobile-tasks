@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../utils/shoe_product.dart';
+import '../widgets/shoe_product.dart';
+
+
 
 class SearchPage extends StatefulWidget {
    const SearchPage({super.key});
