@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 
-import 'product_local_data_source_impl_test.mocks.dart';
+import 'product_remote_data_source_impl_test.mocks.dart';
 
 void main() {
   late ProductLocalDataSourceImpl dataSource;

@@ -17,3 +17,10 @@ class ServerFailure extends Failure {
 class CacheFailure extends Failure {
   const CacheFailure([String message = '']) : super(message);
 }
+class InvalidNameFailure extends Failure {}
+
+class InvalidPriceFailure extends Failure {}
+
+class InvalidDescriptionFailure extends Failure {}
+
+class InvalidImageFailure extends Failure {}

@@ -8,8 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-@GenerateMocks([http.Client])
+@GenerateMocks([http.Client, SharedPreferences])
 import 'product_remote_data_source_impl_test.mocks.dart';
 
 void main() {

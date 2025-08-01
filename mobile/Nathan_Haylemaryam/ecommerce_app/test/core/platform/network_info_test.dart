@@ -1,8 +1,8 @@
 // test/core/platform/network_info_test.dart
+import 'package:ecommerce_app/core/platform/network_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/mockito.dart';
-import 'package:ecommerce_app/core/platform/network_info.dart';
 
 class MockInternetConnectionChecker extends Mock implements InternetConnectionChecker {
   @override
