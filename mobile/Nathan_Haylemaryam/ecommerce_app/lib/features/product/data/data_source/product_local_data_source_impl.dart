@@ -10,8 +10,10 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
   static const String _cachedProductsKey = 'CACHED_PRODUCTS';
   static const String _lastCachedProductKey = 'LAST_CACHED_PRODUCT';
 
-  ProductLocalDataSourceImpl({required this.sharedPreferences});
 
+
+
+  ProductLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<void> cacheProduct(ProductModel product) async {
     // Cache single product
