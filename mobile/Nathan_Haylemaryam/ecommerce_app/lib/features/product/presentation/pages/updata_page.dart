@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -11,6 +12,7 @@ class UpdatePage extends StatefulWidget {
 
 class _UpdatePageState extends State<UpdatePage> {
   File? _selectedImage;
+  final ImagePicker _picker = ImagePicker();
 
 
   // Future<void> _pickImage() async {
@@ -55,7 +57,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   Container(
                     color: const Color.fromRGBO(243, 243, 243, 1),
                     child: GestureDetector(
-                      onTap: (){},
+                      onTap: _pickImage,
                       child: Container(
                         width: 366,
                         height: 190,
@@ -228,5 +230,25 @@ class _UpdatePageState extends State<UpdatePage> {
         ),
       ),
     );
+  }Future<void> _pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 800,
+        maxHeight: 800,
+        imageQuality: 85,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = File(pickedFile.path);
+        });
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to pick image: ${e.toString()}')),
+      );
+    }
   }
+
 }

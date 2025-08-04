@@ -5,12 +5,14 @@ import 'package:ecommerce_app/core/error/exception.dart';
 import 'package:ecommerce_app/features/product/data/data_source/product_local_data_source_impl.dart';
 import 'package:ecommerce_app/features/product/data/models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 import 'product_remote_data_source_impl_test.mocks.dart';
-
+@GenerateMocks([SharedPreferences])
 void main() {
   late ProductLocalDataSourceImpl dataSource;
   late MockSharedPreferences mockSharedPreferences;
@@ -29,25 +31,25 @@ void main() {
       sharedPreferences: mockSharedPreferences,
     );
   });
-
-  group('cacheProduct', () {
-    test('should call SharedPreferences to cache the data', () async {
+  group('deleteProduct', () {
+    test('should remove the product and update cache', () async {
       // arrange
+      final productList = [tProductModel];
+      final expectedJsonString = json.encode(
+        productList.map((product) => product.toJson()).toList(),
+      );
+      when(mockSharedPreferences.getString(any))
+          .thenReturn(expectedJsonString);
       when(mockSharedPreferences.setString(any, any))
           .thenAnswer((_) async => true);
 
       // act
-      await dataSource.cacheProduct(tProductModel);
+      await dataSource.deleteProduct(tProductModel.id);
 
       // assert
-      final expectedJsonString = json.encode(tProductModel.toJson());
-      verify(mockSharedPreferences.setString(
-        any,
-        expectedJsonString,
-      ));
+      verify(mockSharedPreferences.setString(any, json.encode([])));
     });
   });
-
   group('getLastCachedProduct', () {
     test('should return Product from SharedPreferences when there is one', () async {
       // arrange
@@ -104,24 +106,29 @@ void main() {
       expect(result, equals([]));
     });
   });
-
-  group('deleteProduct', () {
-    test('should remove the product and update cache', () async {
+  group('cacheProduct', () {
+    test('should call SharedPreferences to cache the data', () async {
       // arrange
-      final productList = [tProductModel];
-      final expectedJsonString = json.encode(
-        productList.map((product) => product.toJson()).toList(),
-      );
-      when(mockSharedPreferences.getString(any))
-          .thenReturn(expectedJsonString);
+      when(mockSharedPreferences.getString(any)).thenReturn(null); // Stub getString
       when(mockSharedPreferences.setString(any, any))
           .thenAnswer((_) async => true);
 
       // act
-      await dataSource.deleteProduct(tProductModel.id);
+      await dataSource.cacheProduct(tProductModel);
 
       // assert
-      verify(mockSharedPreferences.setString(any, json.encode([])));
+      final expectedJsonString = json.encode(tProductModel.toJson());
+      verify(mockSharedPreferences.setString(
+        any,
+        expectedJsonString,
+      ));
+      verify(mockSharedPreferences.getString(any)); // Verify getString was called
     });
   });
+
+
+
+
+
+
 }

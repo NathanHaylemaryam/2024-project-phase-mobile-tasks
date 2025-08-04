@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+import '../../domain/entities/product.dart';
+import '../bloc/product_bloc.dart';
+import '../bloc/product_state.dart';
 
 import '../widgets/shoe_product.dart';
 import 'search_page.dart';
@@ -114,11 +119,28 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Expanded(
-              child: ListView.builder(itemBuilder: (context,index){
-                return const Product();
+              child: BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is LoadedAllProductState) {
+                    final products = state.products;
 
-              }),
-                )
+                    return ListView.builder(
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        final product = products[index];
+                        return ProductEntity(product: product); // 👈 Pass product to widget
+                      },
+                    );
+                  } else if (state is ProductError) {
+                    return Center(child: Text(state.message));
+                  } else {
+                    return const Center(child: Text("No products found."));
+                  }
+                },
+              ),
+            ),
           ],
         ),
 
@@ -142,6 +164,7 @@ class _HomePageState extends State<HomePage> {
 
         ),
       ),
+
     );
   }
 }

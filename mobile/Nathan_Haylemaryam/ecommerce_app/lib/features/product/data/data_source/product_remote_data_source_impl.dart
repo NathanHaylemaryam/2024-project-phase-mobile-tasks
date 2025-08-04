@@ -27,16 +27,18 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
+  // In your ProductRemoteDataSourceImpl.dart
   Future<ProductModel> getProduct(String id) async {
-    try {
-      final response = await client
-          .get(Uri.parse('$_baseUrl$_productsEndpoint/$id'))
-          .timeout(const Duration(seconds: _timeoutSeconds));
+    final response = await client.get(
+      Uri.parse('$_baseUrl/products/$id'),
+      headers: {'Content-Type': 'application/json'},
+    );
 
-      final products = _handleResponse(response);
-      if (products.isEmpty) throw NotFoundException();
-      return products.first;
-    } catch (e) {
+    if (response.statusCode == 200) {
+      return ProductModel.fromJson(json.decode(response.body));
+    } else if (response.statusCode == 404) {
+      throw NotFoundException();
+    } else {
       throw ServerException();
     }
   }

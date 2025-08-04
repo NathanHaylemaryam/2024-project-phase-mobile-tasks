@@ -63,10 +63,10 @@ void main() {
   });
 
   group('getProduct', () {
-    test('should return product when successful', () async {
+    test('should return product when successful (200)', () async {
       // arrange
       when(mockHttpClient.get(any)).thenAnswer(
-            (_) async => http.Response(json.encode(tProductListJson), 200),
+            (_) async => http.Response(json.encode(tProductJson), 200),
       );
 
       // act
@@ -76,7 +76,7 @@ void main() {
       expect(result, equals(tProductModel));
     });
 
-    test('should throw NotFoundException when product not found', () async {
+    test('should throw NotFoundException when product not found (404)', () async {
       // arrange
       when(mockHttpClient.get(any)).thenAnswer(
             (_) async => http.Response('Not Found', 404),
@@ -87,6 +87,19 @@ void main() {
 
       // assert
       expect(() => call('1'), throwsA(isA<NotFoundException>()));
+    });
+
+    test('should throw ServerException on server error (500)', () async {
+      // arrange
+      when(mockHttpClient.get(any)).thenAnswer(
+            (_) async => http.Response('Server Error', 500),
+      );
+
+      // act
+      final call = dataSource.getProduct;
+
+      // assert
+      expect(() => call('1'), throwsA(isA<ServerException>()));
     });
   });
 

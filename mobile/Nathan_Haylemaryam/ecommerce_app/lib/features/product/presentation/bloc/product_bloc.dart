@@ -15,7 +15,25 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<UpdateProductEvent>(_onUpdateProduct);
     on<DeleteProductEvent>(_onDeleteProduct);
     on<GetProductEvent>(_onGetProduct);
+    on<LoadAllProductEvent>(_onLoadAllProducts);
+
   }
+  Future<void> _onLoadAllProducts(
+      LoadAllProductEvent event,
+      Emitter<ProductState> emit,
+      ) async {
+    print('➡️ LoadAllProductEvent triggered'); // ✅ ADD THIS LINE
+
+    emit(ProductLoading());
+
+    final result = await repository.getAllProducts();
+
+    result.fold(
+          (failure) => emit(ProductError(_mapFailureToMessage(failure))),
+          (products) => emit(LoadedAllProductState(products)),
+    );
+  }
+
 
   Future<void> _onInsertProduct(
       InsertProductEvent event,

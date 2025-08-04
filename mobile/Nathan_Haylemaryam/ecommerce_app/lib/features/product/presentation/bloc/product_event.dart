@@ -43,3 +43,9 @@ class GetProductEvent extends ProductEvent {
   @override
   List<Object?> get props => [id];
 }
+class LoadAllProductEvent extends ProductEvent {
+  const LoadAllProductEvent();
+
+  @override
+  List<Object?> get props => [];
+}

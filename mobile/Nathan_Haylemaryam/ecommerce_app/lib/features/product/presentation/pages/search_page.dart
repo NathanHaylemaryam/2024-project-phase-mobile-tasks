@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/product.dart';
 import '../widgets/shoe_product.dart';
 
 
@@ -92,96 +93,96 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-            Expanded(
-
-              child: ListView.builder(itemBuilder: (context,index){
-                return const Product();
-
-              }),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-
-
-                children: [
-
-                  const Text('Category', style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins',
-
-                  ),
-                  )
-                  ,Container(
-                    height: 40,
-                    width: 366,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const TextField(
-
-                      decoration: InputDecoration(
-
-                        border: InputBorder.none,
-                      ),
-
-                    ),
-                  )
-                  ,const SizedBox(height: 16,),
-                  const Text('Price', style: TextStyle(fontWeight: FontWeight.bold)),
-                SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    trackHeight: 11.0,
-
-                    activeTrackColor: Colors.blue,
-                    inactiveTrackColor: Colors.grey,
-                  ),
-                  child: RangeSlider(
-                    values: values,
-                    min: 0,
-                    max: 100,
-
-                    activeColor: const Color.fromRGBO(63, 81, 243, 1),
-                    inactiveColor: Colors.grey,
-
-                    labels: RangeLabels(
-                      values.start.round().toString(),
-                      values.end.round().toString(),
-                    ),
-                    onChanged: (RangeValues values) {
-                      setState(() {
-                         values= values;
-                      });
-                    },
-                  ),
-                ),
-
-
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context); // Close the sheet
-
-                        // Use filter values in your main screen
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
-                      child: const Text('APPLY', style: TextStyle(color: Colors.white),),
-                    ),
-                  ),
-
-                ],
-
-              ),
-            )
+            // Expanded(
+            //
+            //   child: ListView.builder(itemBuilder: (context,index){
+            //     return ProductEntity(product: product);
+            //
+            //   }),
+            // // ),
+            // // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Column(
+            //
+            //
+            //     children: [
+            //
+            //       const Text('Category', style: TextStyle(
+            //         fontSize: 14,
+            //         fontWeight: FontWeight.w500,
+            //         fontFamily: 'Poppins',
+            //
+            //       ),
+            //       )
+            //       ,Container(
+            //         height: 40,
+            //         width: 366,
+            //         decoration: BoxDecoration(
+            //           border: Border.all(),
+            //           borderRadius: BorderRadius.circular(5),
+            //         ),
+            //         child: const TextField(
+            //
+            //           decoration: InputDecoration(
+            //
+            //             border: InputBorder.none,
+            //           ),
+            //
+            //         ),
+            //       )
+            //       ,const SizedBox(height: 16,),
+            //       const Text('Price', style: TextStyle(fontWeight: FontWeight.bold)),
+            //     SliderTheme(
+            //       data: SliderTheme.of(context).copyWith(
+            //         trackHeight: 11.0,
+            //
+            //         activeTrackColor: Colors.blue,
+            //         inactiveTrackColor: Colors.grey,
+            //       ),
+            //       child: RangeSlider(
+            //         values: values,
+            //         min: 0,
+            //         max: 100,
+            //
+            //         activeColor: const Color.fromRGBO(63, 81, 243, 1),
+            //         inactiveColor: Colors.grey,
+            //
+            //         labels: RangeLabels(
+            //           values.start.round().toString(),
+            //           values.end.round().toString(),
+            //         ),
+            //         onChanged: (RangeValues values) {
+            //           setState(() {
+            //              values= values;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //
+            //
+            //       const SizedBox(height: 8),
+            //       SizedBox(
+            //         width: double.infinity,
+            //         height: 50,
+            //         child: ElevatedButton(
+            //           onPressed: () {
+            //             Navigator.pop(context); // Close the sheet
+            //
+            //             // Use filter values in your main screen
+            //           },
+            //           style: ElevatedButton.styleFrom(
+            //             backgroundColor: const Color.fromRGBO(63, 81, 243, 1),
+            //             padding: const EdgeInsets.symmetric(vertical: 16),
+            //             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            //           ),
+            //           child: const Text('APPLY', style: TextStyle(color: Colors.white),),
+            //         ),
+            //       ),
+            //
+            //     ],
+            //
+            //   ),
+            // )
           ],
         ),
       ),
