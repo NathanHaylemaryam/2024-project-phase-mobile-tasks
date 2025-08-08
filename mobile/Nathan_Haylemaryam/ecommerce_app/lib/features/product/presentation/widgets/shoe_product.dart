@@ -40,7 +40,7 @@ class ProductEntity extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Text(product.price, style: const TextStyle(fontSize: 14)),
+                Text('\$${product.price}', style: const TextStyle(fontSize: 14)),
               ],
             ),
           ),

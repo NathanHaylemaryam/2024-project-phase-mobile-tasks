@@ -29,10 +29,10 @@ void main() {
   });
 
   const tProduct = Product(
-    id: 1,
+    id: '1',
     name: 'Phone',
     decscription: 'Smart device',
-    price: '999.99',
+    price: 999,
     imagepath: 'img.jpg',
   );
 

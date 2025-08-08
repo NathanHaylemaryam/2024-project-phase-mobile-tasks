@@ -7,4 +7,7 @@ abstract class ProductLocalDataSource {
   Future<void> deleteProduct(int id);
 
 
+  Future<void> cacheProductList(List<ProductModel> products);
+
+
 }

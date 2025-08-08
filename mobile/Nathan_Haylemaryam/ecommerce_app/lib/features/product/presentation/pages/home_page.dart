@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import '../../domain/entities/product.dart';
 import '../bloc/product_bloc.dart';
 import '../bloc/product_state.dart';
 

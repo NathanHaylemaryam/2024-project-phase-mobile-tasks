@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -77,9 +78,9 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                       child: _selectedImage != null
                           ? Image.file(_selectedImage!, fit: BoxFit.cover)
-                          : Column(
+                          : const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(Icons.cloud_upload, size: 40),
                           SizedBox(height: 8),
                           Text('Upload Image'),
@@ -194,9 +195,9 @@ class _AddProductPageState extends State<AddProductPage> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       final newProduct = Product(
-        id: DateTime.now().millisecondsSinceEpoch, // Generate unique ID
+        id:' DateTime.now().millisecondsSinceEpoch,', // Generate unique ID
         name: _nameController.text,
-        price: _priceController.text, // Keep as String
+        price: int.parse(_priceController.text), // Keep as String
         decscription: _descriptionController.text,
         imagepath: _selectedImage?.path ?? '',
       );

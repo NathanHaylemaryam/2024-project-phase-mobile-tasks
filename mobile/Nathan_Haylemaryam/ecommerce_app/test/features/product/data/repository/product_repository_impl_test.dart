@@ -34,10 +34,10 @@ void main() {
   });
 
   final tProductModel = const ProductModel(
-    id: 1,
+    id: '1',
     name: 'Test Product',
     decscription: 'Test Description',
-    price: '100',
+    price: 100,
     imagepath: 'test.jpg',
   );
 
@@ -81,7 +81,7 @@ void main() {
       // arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getProduct(tId))
-          .thenThrow(ServerException());
+          .thenThrow(ServerException('ServerFailure'));
 
       // act
       final result = await repository.getProduct(tId);

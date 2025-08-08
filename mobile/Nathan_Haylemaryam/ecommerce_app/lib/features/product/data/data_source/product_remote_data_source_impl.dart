@@ -1,4 +1,4 @@
-// lib/features/product/data/data_source/product_remote_data_source_impl.dart
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../../core/error/exception.dart';
@@ -7,7 +7,7 @@ import 'product_remote_data_source.dart';
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   final http.Client client;
-  static const String _baseUrl = 'https://your-api-base-url.com/api';
+  static const String _baseUrl = 'https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products';
   static const String _productsEndpoint = '/products';
   static const int _timeoutSeconds = 30;
 
@@ -15,15 +15,13 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getAllProducts() async {
-    try {
-      final response = await client
-          .get(Uri.parse('$_baseUrl$_productsEndpoint'))
-          .timeout(const Duration(seconds: _timeoutSeconds));
 
+      print('hi');
+      final response = await client
+          .get(Uri.parse('$_baseUrl'));
+      print('ghh${response.statusCode}');
       return _handleResponse(response);
-    } catch (e) {
-      throw ServerException();
-    }
+
   }
 
   @override
@@ -39,7 +37,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     } else if (response.statusCode == 404) {
       throw NotFoundException();
     } else {
-      throw ServerException();
+      throw ServerException('servererror');
     }
   }
 
@@ -53,10 +51,10 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         body: json.encode(product.toJson()),
       )
           .timeout(const Duration(seconds: _timeoutSeconds));
-
+          print(response);
       _handleResponse(response);
     } catch (e) {
-      throw ServerException();
+      throw ServerException('servererror');
     }
   }
 
@@ -73,7 +71,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
       _handleResponse(response);
     } catch (e) {
-      throw ServerException();
+      throw ServerException('servererror');
     }
   }
 
@@ -86,18 +84,22 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
       _handleResponse(response);
     } catch (e) {
-      throw ServerException();
+      throw ServerException('servererror');
     }
   }
 
   List<ProductModel> _handleResponse(http.Response response) {
     if (response.statusCode == 200) {
-      final List<dynamic> responseData = json.decode(response.body);
-      return responseData.map((json) => ProductModel.fromJson(json)).toList();
+      var responseData = json.decode(response.body)['data'] ;
+
+      var temp_res = responseData.map((model) => ProductModel.fromJson(model)).toList();
+      print(temp_res);
+      return temp_res;
+
     } else if (response.statusCode == 404) {
       throw NotFoundException();
     } else {
-      throw ServerException();
+      throw ServerException('servererror');
     }
   }
 }

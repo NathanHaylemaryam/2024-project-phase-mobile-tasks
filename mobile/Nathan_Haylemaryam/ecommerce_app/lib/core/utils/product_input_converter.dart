@@ -7,9 +7,9 @@ class ProductInputConverter {
   Either<Failure, Product> convertFormToProduct({
     required String name,
     required String description,
-    required String priceStr,
+    required int priceStr,
     required String imagePath,
-    required int id,
+    required String id,
   }) {
     if (name.trim().isEmpty) {
       return Left(InvalidNameFailure());
@@ -23,9 +23,9 @@ class ProductInputConverter {
       return Left(InvalidImageFailure());
     }
 
-    double? price;
+    int? price;
     try {
-      price = double.parse(priceStr);
+      price = priceStr;
       if (price <= 0) {
         return Left(InvalidPriceFailure());
       }
@@ -37,7 +37,7 @@ class ProductInputConverter {
       id: id,
       name: name.trim(),
       decscription: description.trim(),
-      price: price.toStringAsFixed(2),
+      price: price,
       imagepath: imagePath.trim(),
     ));
   }

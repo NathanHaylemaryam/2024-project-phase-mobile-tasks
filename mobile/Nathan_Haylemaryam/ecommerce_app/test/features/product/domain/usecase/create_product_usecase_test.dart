@@ -13,9 +13,9 @@ void main() {
   late InsertProduct usecase;
   late MockProductRepository mockRepository;
   const testProduct = Product(
-    id: 1,
+    id: '1',
     name: 'Test Product',
-    price: '100.0',
+    price: 100,
     decscription: 'Test Description',
     imagepath: 'test.jpg',
   );

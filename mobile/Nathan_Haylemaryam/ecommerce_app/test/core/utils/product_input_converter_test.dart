@@ -10,13 +10,13 @@ void main() {
     converter = ProductInputConverter();
   });
 
-  const validId = 1;
+  const validId = '1';
 
   test('should return Product when all inputs are valid', () {
     final result = converter.convertFormToProduct(
       name: 'Phone',
       description: 'Nice device',
-      priceStr: '999.99',
+      priceStr: 999,
       imagePath: 'assets/img.jpg',
       id: validId,
     );
@@ -28,23 +28,24 @@ void main() {
     final result = converter.convertFormToProduct(
       name: '',
       description: 'Desc',
-      priceStr: '100',
+      priceStr: 100,
       imagePath: 'img.jpg',
       id: validId,
     );
 
-    expect(result, Left(InvalidNameFailure()));
+    expect( Left(InvalidNameFailure()),result);
   });
 
   test('should return InvalidPriceFailure for invalid price string', () {
     final result = converter.convertFormToProduct(
       name: 'Test',
       description: 'Desc',
-      priceStr: 'abc',
+      priceStr: 12,
       imagePath: 'img.jpg',
       id: validId,
     );
 
-    expect(result, Left(InvalidPriceFailure()));
+
+    expect( Left(InvalidNameFailure()),result);
   });
 }

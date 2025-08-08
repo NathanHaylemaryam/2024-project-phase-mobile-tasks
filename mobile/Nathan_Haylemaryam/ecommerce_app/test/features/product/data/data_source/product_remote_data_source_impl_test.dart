@@ -18,10 +18,10 @@ void main() {
   late MockClient mockHttpClient;
 
   final tProductModel = const ProductModel(
-    id: 1,
+    id: '1',
     name: 'Test Product',
     decscription: 'Test Description',
-    price: '100',
+    price: 100,
     imagepath: 'test.jpg',
   );
 

@@ -18,10 +18,10 @@ void main() {
   late MockSharedPreferences mockSharedPreferences;
 
   final tProductModel = const ProductModel(
-    id: 1,
+    id: '1',
     name: 'Test Product',
     decscription: 'Test Description',
-    price: '100',
+    price: 100,
     imagepath: 'test.jpg',
   );
 
@@ -44,7 +44,7 @@ void main() {
           .thenAnswer((_) async => true);
 
       // act
-      await dataSource.deleteProduct(tProductModel.id);
+      await dataSource.deleteProduct(tProductModel.id as int);
 
       // assert
       verify(mockSharedPreferences.setString(any, json.encode([])));

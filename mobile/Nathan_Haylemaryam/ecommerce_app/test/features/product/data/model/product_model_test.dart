@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   const productModel = ProductModel(
-    id: 1,
+    id: '1',
     name: 'Nike Air Max',
     decscription: 'Running shoes',
-    price: '120.00',
+    price: 120,
     imagepath: 'assets/images/shoe1.png',
   );
 

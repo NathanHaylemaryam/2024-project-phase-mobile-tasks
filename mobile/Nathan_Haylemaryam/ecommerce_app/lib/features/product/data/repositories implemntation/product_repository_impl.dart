@@ -104,20 +104,27 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<Failure, List<Product>>> getAllProducts() async {
     print('➡️ LoadAllProductEvent triggered');
 
-    try {
-      // ✅ Try loading from local cache first
-      final localProducts = await localDataSource.getLastProductList();
-      return Right(localProducts.map((model) => model.toEntity()).toList());
-    } catch (e) {
-      print('⚠️ Local load failed, using dummy data');
-
-      // 🔄 Fallback to dummy data if local fails
-      final dummyProducts = [
-        const Product(id: 1, name: 'Dummy Shoe1', price: '578', decscription: 'vnuer' ,imagepath: 'lib/images/1.jpg'),
-        const Product(id: 1, name: 'Dummy Shoe2', price: '578', decscription: 'vnuer' ,imagepath: 'lib/images/1.jpg'),
-      ];
-      return Right(dummyProducts);
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteProducts = await remoteDataSource.getAllProducts();
+        await localDataSource.cacheProductList(remoteProducts);
+        final products = remoteProducts.map((model) => model.toEntity()).toList();
+        return Right(products);
+      } on ServerException {
+        return const Left(ServerFailure());
+      } catch (e) {
+        return const Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localProducts = await localDataSource.getLastProductList();
+        final products = localProducts.map((model) => model.toEntity()).toList();
+        return Right(products);
+      } catch (e) {
+        return const Left(CacheFailure());
+      }
     }
   }
+
 
 }

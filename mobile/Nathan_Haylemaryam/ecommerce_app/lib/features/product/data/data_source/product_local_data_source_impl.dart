@@ -60,5 +60,15 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
     final products = await getLastProductList();
     products.removeWhere((product) => product.id == id);
     await _cacheProductList(products);
+  }@override
+  Future<void> cacheProductList(List<ProductModel> products) async {
+    final productJsonList = products.map((product) => product.toJson()).toList();
+    final jsonString = json.encode(productJsonList);
+
+    await sharedPreferences.setString(
+      _lastCachedProductKey, // or rename this to _lastCachedProductListKey for clarity
+      jsonString,
+    );
+
   }
 }

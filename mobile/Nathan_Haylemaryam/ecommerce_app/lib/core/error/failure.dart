@@ -24,3 +24,9 @@ class InvalidPriceFailure extends Failure {}
 class InvalidDescriptionFailure extends Failure {}
 
 class InvalidImageFailure extends Failure {}
+class NetworkFailure extends Failure {
+  NetworkFailure(String s);
+}
+class UnauthorizedFailure extends Failure {
+  UnauthorizedFailure(String message) : super(message);
+}

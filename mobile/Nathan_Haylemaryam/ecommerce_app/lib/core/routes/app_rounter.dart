@@ -1,51 +1,53 @@
-// lib/core/routes/app_router.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/product/domain/entities/product.dart';
+// Auth Screens
+import '../../features/auth/presentation/pages/home_screen.dart';
+import '../../features/auth/presentation/pages/sign_in_page.dart';
+import '../../features/auth/presentation/pages/sign_up_page.dart';
+import '../../features/auth/presentation/pages/splash.dart';
 
-import '../../features/product/presentation/bloc/product_bloc.dart';
-import '../../features/product/presentation/bloc/product_event.dart';
+
 import '../../features/product/presentation/pages/ product_list_page.dart';
 import '../../features/product/presentation/pages/add_product_page.dart';
-import '../../features/product/presentation/pages/home_page.dart';
 import '../../features/product/presentation/pages/product_detail_page.dart';
-import '../../injection_container.dart';
-
 
 class AppRouter {
-  // lib/core/routes/app_router.dart
+  static const String splash = '/';
+  static const String signIn = '/signin';
+  static const String signUp = '/signup';
+  static const String home = '/home';
+  static const String productList = '/product';
+  static const String addProduct = '/add-product';
+  static const String productDetail = '/product-detail';
+
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => sl<ProductBloc>()..add(const LoadAllProductEvent()),
-            child:  ProductListPage(),
-          ),
-        );
-
-      case '/add-product':
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => sl<ProductBloc>(),
-            child:  AddProductPage(),
-          ),
-        );
-
-      case '/product-detail':
-        final String productId = settings.arguments as String;
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => sl<ProductBloc>()..add(GetProductEvent(productId)),
-            child: ProductDetailPage(productId: productId),
-          ),
-        );
-
+      case splash:
+        return _buildRoute(const SplashScreen());
+      case signIn:
+        return _buildRoute(const SignInScreen());
+      case signUp:
+        return _buildRoute(const SignUpScreen());
+      case home:
+        return _buildRoute(const HomeScreen());
+      case productList:
+        return _buildRoute( ProductListPage());
+      case addProduct:
+        return _buildRoute(AddProductPage());
+      case productDetail:
+        final productId = settings.arguments as String;
+        return _buildRoute(ProductDetailPage(productId: productId));
       default:
-        return MaterialPageRoute(
-          builder: (_) => const Scaffold(body: Center(child: Text('Page not found'))),
+        return _buildRoute(
+          const Scaffold(body: Center(child: Text('Page not found'))),
         );
     }
+  }
+
+  static MaterialPageRoute<T> _buildRoute<T>(Widget widget) {
+    return MaterialPageRoute<T>(
+      builder: (_) => widget,
+      settings: RouteSettings(name: widget.toStringShort()),
+    );
   }
 }
