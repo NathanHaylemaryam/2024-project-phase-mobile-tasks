@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../../../../core/error/exception.dart';
+import '../model/user_model.dart';
 
 
 abstract class AuthRemoteDataSource {
@@ -116,15 +117,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
-  // UserModel _handleUserResponse(Response response) {
-  //   if (response.statusCode == 200) {
-  //     return UserModel.fromJson(response.data);
-  //   } else if (response.statusCode == 401) {
-  //     throw UnauthorizedException('Session expired');
-  //   } else {
-  //     throw ServerException('Failed to fetch user data');
-  //   }
-  // }
+  UserModel _handleUserResponse(Response response) {
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    } else if (response.statusCode == 401) {
+      throw UnauthorizedException('Session expired');
+    } else {
+      throw ServerException('Failed to fetch user data');
+    }
+  }
 
   Future<Map<String, String>> _getAuthHeader() async {
     // In a real app, you'd get this from your local storage
